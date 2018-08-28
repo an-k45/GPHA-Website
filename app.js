@@ -9,43 +9,43 @@ app.use(express.static(__dirname + "/public"));
 
 // ROUTES
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", {pageName: 'index'});
 })
 
 app.get("/about", (req, res) => {
-  res.render("about");
+  res.render("about", {pageName: req.path.slice(1)});
 })
 
 app.get("/posts", (req, res) => {
-  res.render("posts");
+  res.render("posts", {pageName: req.path.slice(1)});
 })
 
 app.get("/membership", (req, res) => {
-  res.render("membership");
+  res.render("membership", {pageName: req.path.slice(1)});
 })
 
 app.get("/photos", (req, res) => {
-  res.render("photos");
+  res.render("photos", {pageName: req.path.slice(1)});
 })
 
 app.get("/calendar", (req, res) => {
-  res.render("calendar");
+  res.render("calendar", {pageName: req.path.slice(1)});
 })
 
 app.get("/prayers", (req, res) => {
-  res.render("prayers");
+  res.render("prayers", {pageName: req.path.slice(1)});
 })
 
 app.get("/community", (req, res) => {
-  res.render("community");
+  res.render("community", {pageName: req.path.slice(1)});
 })
 
 app.get("/donations", (req, res) => {
-  res.render("donations");
+  res.render("donations", {pageName: req.path.slice(1)});
 })
 
 app.get("/contact", (req, res) => {
-  res.render("contact");
+  res.render("contact", {pageName: req.path.slice(1)});
 })
 
 // Verifies server being online
