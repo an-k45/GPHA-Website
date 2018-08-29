@@ -1,6 +1,7 @@
 const express    = require("express"),
       app        = express(),
-      bodyParser = require("body-parser");
+      bodyParser = require("body-parser"),
+      request    = require("request");
 
 // App configuration
 app.use(bodyParser.urlencoded({extended: true}));
@@ -9,8 +10,36 @@ app.use(express.static(__dirname + "/public"));
 
 // ROUTES
 app.get("/", (req, res) => {
-  res.render("index", {pageName: 'index'});
-})
+  // Obtain the access token.
+  const headers = {
+    'accept': 'application/json',
+    'content-type': 'application/x-www-form-urlencoded'
+  };
+  // client_id and client_secret will be rehashed and set as variables in Heroku later.
+  const client_id = '4pP2LIGimXEI0I5lsszFiXVbVm2XpQ3gPwnkiyP8'
+  const client_secret = 'z3NrTEpPSUZN2SEb2NzRlOVUeEP0Jps5bdi1suuqg1rVwELl5v'
+  const dataString = 'client_id=' + client_id + '&client_secret=' +
+    client_secret + '&grant_type=client_credentials&scope=verse%20chapter';
+  const options = {
+    url: 'https://bhagavadgita.io/auth/oauth/token',
+    method: 'POST',
+    headers: headers,
+    body: dataString
+  };
+  function callback(error, response, body) {
+    if (!error && response.statusCode == 200) {
+      let auth = JSON.parse(body);
+      const url = generateURL(auth);
+      request(url, (error, response, body) => {
+        let verse = JSON.parse(body);
+        res.render("index", {pageName: 'index', verse: verse});
+      });
+    }
+  }
+
+  // Generate the verse and render the page.
+  request(options, callback);
+});
 
 app.get("/about", (req, res) => {
   res.render("about", {pageName: req.path.slice(1)});
@@ -53,3 +82,14 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
 });
+
+// Middleware
+function generateURL(auth) {
+  // Retrive a random verse.
+  let chapterNum = Math.ceil(Math.random() * 18);
+  const chapterVerses = {1: 47, 2: 72, 3: 43, 4: 42, 5: 26, 6: 47, 7: 30, 8: 28,
+    9: 34, 10: 42, 11: 55, 12: 20, 13: 35, 14: 27, 15: 20, 16: 24, 17: 28, 18: 78};
+  // Small bug: The verse will infrequently be empty.
+  let verseNum = Math.ceil(Math.random() * chapterVerses[chapterNum]);
+  return "https://bhagavadgita.io/api/v1/chapters/" + chapterNum + "/verses/" + verseNum + "?access_token=" + auth.access_token
+}
