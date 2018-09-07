@@ -1,3 +1,7 @@
+body {
+  background-color: #f8f6e8;
+}
+
 .banner {
   /* Code adapted from W3Schools */
   background-image: linear-gradient(rgba(210, 167, 0, 0.35), rgba(210, 167, 0, 0.35)), url("../images/banner.jpg");
@@ -33,4 +37,26 @@
 
 .hr {
     color: #FFA52C;
+}
+
+.time-container {
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .time-container {
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .time-container {
+    width: 40%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .time-container {
+    width: 30%;
+  }
 }
