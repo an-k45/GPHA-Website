@@ -1,5 +1,5 @@
-/* Code adapted from W3Schools */
 .banner {
+  /* Code adapted from W3Schools */
   background-image: linear-gradient(rgba(210, 167, 0, 0.35), rgba(210, 167, 0, 0.35)), url("../images/banner.jpg");
   background-position: 50% 25%;
   background-repeat: no-repeat;
@@ -20,4 +20,17 @@
 .py-6 {
   padding-top: 7.5%;
   padding-bottom: 7.5%;
+}
+
+.gita-splash {
+  background-color: #FFA52C;
+}
+
+.gita-inner-splash {
+  background-color: #ffd017;
+  border-radius: 5px;
+}
+
+.hr {
+    color: #FFA52C;
 }

@@ -1,3 +1,15 @@
-<p><%= verse.meaning %></p>
-<p><%= verse.text.slice(0, -6) %></p>
-<h2>GITA - CH<%= verse.chapter_number %>, Verse <%= verse.verse_number %></h2>
+<div class="gita-splash">
+  <div class="container py-1">
+    <div class="text-center">
+      <div class="gita-inner-splash">
+        <hr class="hr"/>
+        <p><%= verse.meaning %></p>
+        <hr class="hr"/>
+        <p><%= verse.text.slice(0, -6) %></p>
+        <hr class="hr"/>
+        <h4>Bhagavad Gita <%= verse.chapter_number %>:<%= verse.verse_number %></h4>
+        <hr class="hr"/>
+      </div>
+    </div>
+  </div>
+</div>
