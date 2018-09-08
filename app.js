@@ -10,6 +10,8 @@ app.use(express.static(__dirname + "/public"));
 
 // ROUTES
 app.get("/", (req, res) => {
+  // Thanks to https://curl.trillworks.com/#node, from which code here was adapted.
+  // NOTE See http://callbackhell.com/ for potential future refactoring.
   // Obtain the access token.
   const headers = {
     'accept': 'application/json',
@@ -28,11 +30,17 @@ app.get("/", (req, res) => {
   };
   function callback(error, response, body) {
     if (!error && response.statusCode == 200) {
+      // Collect authorization data
       let auth = JSON.parse(body);
       const url = generateURL(auth);
       request(url, (error, response, body) => {
         let verse = JSON.parse(body);
-        res.render("index", {pageName: 'index', verse: verse});
+        // Recursively submit another request if the verse returned does not exist.
+        if (Boolean(verse.text)) {
+          res.render("index", {pageName: 'index', verse: verse});
+        } else {
+          request(options, callback);
+        }
       });
     }
   }
@@ -89,7 +97,7 @@ function generateURL(auth) {
   let chapterNum = Math.ceil(Math.random() * 18);
   const chapterVerses = {1: 47, 2: 72, 3: 43, 4: 42, 5: 26, 6: 47, 7: 30, 8: 28,
     9: 34, 10: 42, 11: 55, 12: 20, 13: 35, 14: 27, 15: 20, 16: 24, 17: 28, 18: 78};
-  // Small bug: The verse will infrequently be empty.
   let verseNum = Math.ceil(Math.random() * chapterVerses[chapterNum]);
+  //
   return "https://bhagavadgita.io/api/v1/chapters/" + chapterNum + "/verses/" + verseNum + "?access_token=" + auth.access_token
 }
