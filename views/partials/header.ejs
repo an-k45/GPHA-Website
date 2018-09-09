@@ -2,7 +2,13 @@
   <div class="container text-white">
     <div class="text-center">
       <h1 id="header-text" class="display-4">
-        <strong>The Grande Prairie Hindu Association</strong>
+        <strong>
+          <% if (pageName === 'index') { %>
+            The Grande Prairie Hindu Association
+          <% } else { %>
+            <%= pageName.slice(0, 1).toUpperCase() + pageName.slice(1) %>
+          <% } %>
+        </strong>
       </h1>
     </div>
   </div>
