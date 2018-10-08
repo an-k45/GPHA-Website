@@ -6,17 +6,19 @@
   <body>
     <% include partials/navbar %>
     <% include partials/header %>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-8">
-          <% include partials/email %>
+    <div class="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-8">
+            <% include partials/email %>
+          </div>
+          <div class="col-12 col-md-4">
+            <% include partials/time %>
+          </div>
         </div>
-        <div class="col-12 col-md-4">
-          <% include partials/time %>
+        <div class="row">
+          <% include partials/map %>
         </div>
-      </div>
-      <div class="row">
-        <% include partials/map %>
       </div>
     </div>
     <% include partials/footer %>

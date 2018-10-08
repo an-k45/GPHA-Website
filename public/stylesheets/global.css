@@ -1,5 +1,13 @@
 body {
   background-color: #f8f6e8;
+  /* min-height: 100%; */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
 }
 
 .py-6 {
