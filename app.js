@@ -17,11 +17,10 @@ app.get("/", (req, res) => {
     'accept': 'application/json',
     'content-type': 'application/x-www-form-urlencoded'
   };
-  // client_id and client_secret will be rehashed and set as variables in Heroku later.
-  const client_id = '4pP2LIGimXEI0I5lsszFiXVbVm2XpQ3gPwnkiyP8'
-  const client_secret = 'z3NrTEpPSUZN2SEb2NzRlOVUeEP0Jps5bdi1suuqg1rVwELl5v'
-  const dataString = 'client_id=' + client_id + '&client_secret=' +
-    client_secret + '&grant_type=client_credentials&scope=verse%20chapter';
+  const CLIENT_ID = process.env.HEROKU_CLIENT_ID
+  const CLIENT_SECRET = process.env.HEROKU_CLIENT_SECRET
+  const dataString = 'client_id=' + CLIENT_ID + '&client_secret=' +
+    CLIENT_SECRET + '&grant_type=client_credentials&scope=verse%20chapter';
   const options = {
     url: 'https://bhagavadgita.io/auth/oauth/token',
     method: 'POST',
