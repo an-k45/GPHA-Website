@@ -1,27 +1,32 @@
-<div class="container py-5">
+<div id="form_container" class="container py-5">
   <div class="text-center">
     <h2>Email</h2>
   </div>
-  <form action="" method="">
+
+  <form id="email_form">
     <div class="row">
       <div class="col-12 col-md-6">
         <div class="form-group">
-          <input class="form-control" type='text' name='name' placeholder='Name'/>
+          <input class="form-control" type="text" name="subject" placeholder="Subject"/>
         </div>
       </div>
       <div class="col-12 col-md-6">
         <div class="form-group">
-          <input class="form-control" type='text' name='email' placeholder='Email'/>
+          <input class="form-control" type="text" name="email" placeholder='Email'/>
         </div>
       </div>
       <div class="col-12">
         <div class="form-group">
-          <textarea class="form-control" name='message' rows="3" placeholder='Message'></textarea>
+          <textarea class="form-control" name="text" rows="3" placeholder="Message"></textarea>
         </div>
       </div>
     </div>
+    <p>Powered by <a href="https://postmail.invotes.com" target="_blank">PostMail</a></p>
     <div class="text-center">
-      <button class="btn" type="submit">Send</button>
+      <input class="btn" type="submit" id="js_send" value="Send" />
     </div>
+    <br />
   </form>
 </div>
+
+<script type="text/javascript" src="/js/email-form.js"></script>
