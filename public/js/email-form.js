@@ -10,7 +10,7 @@ var emailField = document.querySelector("#" + form_id_js + " [name='email']");
 var messageField = document.querySelector("#" + form_id_js + " [name='text']");
 
 var data_js = {
-  "access_token": process.env.POSTMAIL_ACCESS_TOKEN;
+  "access_token": process.env.POSTMAIL_ACCESS_TOKEN
 };
 
 function js_send() {
