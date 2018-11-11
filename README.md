@@ -4,7 +4,7 @@ This repo contains the website for the Grande Prairie Hindu Association (GPHA).
 
 ## Access
 
-The website can be accessed through http://www.gphinduassociation.ca/ (emphasis on www).
+The website can be accessed through http://www.gphinduassociation.ca/.
 
 ## Authors and Acknowledgement
 
